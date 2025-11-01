@@ -1,4 +1,7 @@
 import cv2
 import face_recognition
+import platform
+import subprocess
+import sys
 
 cmake
