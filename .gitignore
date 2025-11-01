@@ -1,3 +1,10 @@
 __pycache__/
 captures/
 settings.json
+.env
+
+build/
+dist/
+main.spec
+reports/
+tracking/

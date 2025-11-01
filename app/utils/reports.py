@@ -1,5 +1,5 @@
 from typing import Optional, Dict, List, Any
-from .options import settings
+from .settings import settings
 import time
 
 class Report:

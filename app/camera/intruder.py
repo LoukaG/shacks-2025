@@ -1,5 +1,6 @@
 import cv2
 import face_recognition
+print(face_recognition.__file__)
 
 class Intruder:
     def __init__(self, reference_paths: list[str]):

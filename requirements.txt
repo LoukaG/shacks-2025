@@ -1,0 +1,12 @@
+psutil
+pyperclip
+pygetwindow
+mss
+pynput
+opencv-python
+face_recognition
+reportlab
+huggingface_hub
+discord
+dotenv
+PySide6

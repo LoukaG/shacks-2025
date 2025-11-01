@@ -6,11 +6,14 @@ from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtCore import Qt, QEvent
 from pathlib import Path
 
+from app.utils.ressources import resource_path
+
 class IntrusionReportWindow(QWidget):
 	def __init__(self):
 		super().__init__()
+  
 		self.setWindowTitle("Shacks 2025 - Rapports d'intrusion")
-		self.setWindowIcon(QIcon("assets/icon.png"))
+		self.setWindowIcon(QIcon(resource_path("assets/icon.png")))
 		self.resize(900, 650)
 
 		self.setStyleSheet("""

@@ -3,7 +3,7 @@ from PySide6.QtGui import QIcon, QPixmap, QFont
 from PySide6.QtCore import Qt, Signal
 
 from app.ui.intrusion_report_window import IntrusionReportWindow
-from ..utils.options import settings
+from ..utils.settings import settings
 from .reference_window import ReferenceWindow
 
 class OptionsWindow(QWidget):
