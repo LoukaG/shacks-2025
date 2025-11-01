@@ -1,71 +1,42 @@
 {
-    "session_metadata": {
-      "capture_time": "2025-11-01T14:32:50Z",
-      "operator": "system",
-      "system": {
-        "hostname": "PC-SECURITY-01",
-        "os": "Windows 11 Pro",
-        "ip": "192.168.0.22"
-      }
+  "person": {
+    "image_local_path": "C:/captures/person_001.jpg"
+  },
+  "system_info": {
+    "hostname": "PC-01",
+    "os": "Windows 11",
+    "ip_address": "192.168.1.45"
+  },
+  "capture_time": "2025-11-01T14:32:50Z",
+  "activity_logs": [
+    {
+      "timestamp": "2025-11-01T08:03:12Z",
+      "event": "user_login",
+      "username": "john",
+      "device": "Desktop"
     },
-    "person": {
-      "status": "unknown_identification",
-      "image_local_path": "C:/security/captures/person_001.jpg"
+    {
+      "timestamp": "2025-11-01T08:15:40Z",
+      "event": "app_open",
+      "application": "CRM Pro"
     },
-    "activity_logs": [
-      {
-        "timestamp": "2025-11-01T08:03:12Z",
-        "type": "system_event",
-        "description": "User login detected",
-        "details": {
-          "username": "jdupont",
-          "device": "Desktop",
-          "method": "Password"
-        }
-      },
-      {
-        "timestamp": "2025-11-01T08:14:32Z",
-        "type": "application_launch",
-        "application": "CRM Pro",
-        "device": "Desktop"
-      },
-      {
-        "timestamp": "2025-11-01T09:54:10Z",
-        "type": "file_access",
-        "file_path": "D:/Clients/Alpha/contrat.docx",
-        "action": "opened"
-      },
-      {
-        "timestamp": "2025-11-01T10:30:00Z",
-        "type": "network_event",
-        "event": "email_sent",
-        "target": "client@societe-alpha.com"
-      },
-      {
-        "timestamp": "2025-11-01T12:00:00Z",
-        "type": "break",
-        "duration": "3600 seconds",
-        "activity": "Lunch break"
-      },
-      {
-        "timestamp": "2025-11-01T17:00:15Z",
-        "type": "system_event",
-        "description": "User logged out",
-        "details": {
-          "username": "jdupont"
-        }
-      }
-    ],
-    "llm_task_directives": {
-      "goal": "generate_clean_activity_report",
-      "output_format": "pdf_with_image",
-      "required_sections": [
-        "photo",
-        "summary",
-        "key_actions",
-        "timeline",
-        "potential_flags_or_anomalies"
-      ]
+    {
+      "timestamp": "2025-11-01T10:12:55Z",
+      "event": "file_open",
+      "path": "D:/docs/client_alpha.docx"
+    },
+    {
+      "timestamp": "2025-11-01T12:00:00Z",
+      "event": "break_start"
+    },
+    {
+      "timestamp": "2025-11-01T13:00:00Z",
+      "event": "break_end"
+    },
+    {
+      "timestamp": "2025-11-01T17:00:15Z",
+      "event": "user_logout",
+      "username": "john"
     }
-  }
-  
+  ]
+}
