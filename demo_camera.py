@@ -2,7 +2,7 @@ import cv2
 import face_recognition
 
 
-REFERENCE_IMAGE = "photo_jas\photo_1.jpg"  # Votre photo de référence
+REFERENCE_IMAGE = "old\photo_1.jpg"  # Votre photo de référence
 TOLERANCE = 0.6  # Plus bas = plus strict (0.4-0.7)
 
 
