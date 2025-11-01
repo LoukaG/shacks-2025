@@ -10,3 +10,4 @@ huggingface_hub
 discord
 dotenv
 PySide6
+pytz
