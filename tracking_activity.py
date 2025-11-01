@@ -14,9 +14,12 @@ from pynput.mouse import Button, Listener as MouseListener    # Pour la souris
 from watchdog.observers import Observer                       # Pour surveiller les fichiers
 from watchdog.events import FileSystemEventHandler            # Pour gérer les événements de fichiers
 
+_tracking_folder_path = "tracking"
 _last_title = None
+_last_clipboard = ""
+_known_pids = set()
 _event_log = []
-_stop_event = threading.Event()
+stop_event = threading.Event()
 _running_lstnr = {
     "keyboard": None,
     "mouse": None
@@ -24,15 +27,15 @@ _running_lstnr = {
 
 def tracking(duration, output):
     _start_tracking_activity()
-    _stop_event.wait(duration)
+    stop_event.wait(duration)
     _stop_tracking_activity()
     output["json_path"]=_save_log_to_json()
 
 def stop_tracking():
-    _stop_event.set()
+    stop_event.set()
 
 def _start_tracking_activity():
-    _stop_event.clear()
+    stop_event.clear()
     _start_all_tracking_event()
 
 def _start_all_tracking_event():
@@ -40,14 +43,16 @@ def _start_all_tracking_event():
         (_start_kbd_lstnr, ()),
         (_start_mouse_lstnr, ()),
         (_window_tracker_loop, ()),
-        (_screenshot_loop, ())
+        (_screenshot_loop, ()),
+        (_clipboard_tracker_loop, ()),
+        (_new_process_loop, ())
     ]
     for task_func, task_args in tasks:
         thread = threading.Thread(target=task_func, args=task_args, daemon=True)
         thread.start()
 
 def _stop_tracking_activity():
-    _stop_event.set()
+    stop_event.set()
     if _running_lstnr["mouse"]:
         _running_lstnr["mouse"].stop()
 
@@ -70,6 +75,9 @@ def _start_lstnr(name, lstnr):
     lstnr.join()
     
 
+
+
+
 # Keyboard
 def _start_kbd_lstnr():
     with KeyboardListener(on_press=_log_keystroke) as lstnr:
@@ -81,6 +89,9 @@ def _log_keystroke(key):
         "key": str(key)
     }
     _add_to_log(data)
+
+
+
 
 
 # Mouse
@@ -100,16 +111,19 @@ def _log_mouse_click(x, y, button, pressed):
         _add_to_log(data)
 
 
+
+
+
 # Window
-def _window_tracker_loop():
-    while not _stop_event.is_set():
+def _window_tracker_loop(interval=1):
+    while not stop_event.is_set():
         _log_active_window()
-        _stop_event.wait(2)
+        stop_event.wait(interval)
 
 def _log_active_window():
     global _last_title
     title = _get_active_window_title()
-    if title and title is not _last_title:
+    if title and title != _last_title:
         _last_title = title
         data = {
             "type": "window_change",
@@ -119,12 +133,17 @@ def _log_active_window():
 
 
 
+
+
 # screenshots
 def _screenshot_loop(output_dir = "screenshots", interval = 3):
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-    while not _stop_event.is_set():
-        file_name = f"{output_dir}/screenshot_{int(time.time())}.jpeg"
+    if not os.path.exists(_tracking_folder_path):
+        os.makedirs(_tracking_folder_path)
+    output_dir_path = f"{_tracking_folder_path}/{output_dir}"
+    if not os.path.exists(output_dir_path):
+        os.makedirs(output_dir_path)
+    while not stop_event.is_set():
+        file_name = f"{output_dir_path}/screenshot_{int(time.time())}.jpeg"
         try:
             with mss.mss() as sct:
                 sct.shot(output=file_name)
@@ -136,14 +155,78 @@ def _screenshot_loop(output_dir = "screenshots", interval = 3):
                 _add_to_log(data)
         except Exception as e:
             print (f"Erreur MSS: {e}")
-        _stop_event.wait(interval)
+        stop_event.wait(interval)
+
+
+
+
+# clipboard
+def _clipboard_tracker_loop(interval=1):
+    global _last_clipboard
+    _last_clipboard = pyperclip.paste()
+    while not stop_event.is_set():
+        _log_clipboard()
+        stop_event.wait(interval)
+
+def _log_clipboard():
+    global _last_clipboard
+    try:
+        content = pyperclip.paste()
+        if content and content != _last_clipboard :
+            _last_clipboard = content
+            data = {
+                "type": "clipboard_copy",
+                "content": content   
+            }
+            _add_to_log(data)
+    except Exception as e:
+        pass
+
+
+
+
+# new prossess
+def _new_process_loop(interval=5):
+    global _known_pids 
+    _known_pids = set(psutil.pids())
+    while not stop_event.is_set():
+        _log_new_process()
+        stop_event.wait(interval)
+
+
+def _log_new_process():
+    global _known_pids
+    try:
+        cur_pids = set(psutil.pids())
+        new_pids = cur_pids - _known_pids
+        for pid in new_pids:
+            try:
+                p = psutil.Process(pid)
+                data={
+                    "type": "process_start",
+                    "pid": pid,
+                    "name": p.name(),
+                    "username": p.username()  
+                }
+                _add_to_log(data)
+            except Exception:
+                pass
+        _known_pids = cur_pids
+    except Exception as e:
+        print(f"Erreur PSUtil: {e}")
+
+
+
 
 
 def _save_log_to_json(output_dir = "intrusions", file_name="intrusion_log"):
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    if not os.path.exists(_tracking_folder_path):
+        os.makedirs(_tracking_folder_path)
+    output_dir_path = f"{_tracking_folder_path}/{output_dir}"
+    if not os.path.exists(output_dir_path):
+        os.makedirs(output_dir_path)
     try:
-        json_path = f"{output_dir}/{file_name}_{int(time.time())}.json"
+        json_path = f"{output_dir_path}/{file_name}_{int(time.time())}.json"
         with open(json_path, 'w', encoding='utf-8') as f:
             json.dump(_event_log, f, indent=4)
         return json_path
@@ -151,17 +234,8 @@ def _save_log_to_json(output_dir = "intrusions", file_name="intrusion_log"):
         print(f"Log to JSON Error : {e}")
         return None
 
-c = False
-def cancel():
-    time.sleep(5)
-    global c
-    c = True
+
+
 output = {}
-threading.Thread(target=cancel, daemon=True).start()
-tracking_thread = threading.Thread(target=tracking, args=(15, output),daemon=True)
-tracking_thread.start()
-while tracking_thread.is_alive():
-    if c:
-        stop_tracking()
-    _stop_event.wait(1)
+tracking(60, output)
 print(output["json_path"])

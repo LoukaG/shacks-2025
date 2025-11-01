@@ -15,5 +15,5 @@ tracking_thread.start()
 while tracking_thread.is_alive():
     if c:
         ta.stop_tracking()
-    ta._stop_event.wait(1)
+    ta.stop_event.wait(1)
 print(output["json_path"])

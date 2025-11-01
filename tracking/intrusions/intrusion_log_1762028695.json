@@ -1,0 +1,508 @@
+[
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028635.2920432
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028635.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028635.4069216
+    },
+    {
+        "type": "mouse_click",
+        "x": 487,
+        "y": 478,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028637.2239506
+    },
+    {
+        "type": "mouse_click",
+        "x": 466,
+        "y": 497,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028637.6540508
+    },
+    {
+        "type": "mouse_click",
+        "x": 455,
+        "y": 518,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028638.0000668
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028638.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028638.4818196
+    },
+    {
+        "type": "mouse_click",
+        "x": 570,
+        "y": 1041,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028640.1737494
+    },
+    {
+        "type": "window_change",
+        "title": "Rechercher",
+        "timestamp": 1762028640.3462071
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028641.jpeg",
+        "window_title": "Rechercher",
+        "timestamp": 1762028641.564641
+    },
+    {
+        "type": "mouse_click",
+        "x": 976,
+        "y": 438,
+        "button": "Button.left",
+        "window_title": "Rechercher",
+        "timestamp": 1762028642.1339414
+    },
+    {
+        "type": "window_change",
+        "title": "Spotify",
+        "timestamp": 1762028643.3649943
+    },
+    {
+        "type": "window_change",
+        "title": "Spotify Free",
+        "timestamp": 1762028644.367734
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028644.jpeg",
+        "window_title": "Spotify Free",
+        "timestamp": 1762028644.6480448
+    },
+    {
+        "type": "process_start",
+        "pid": 10432,
+        "name": "backgroundTaskHost.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028645.3046434
+    },
+    {
+        "type": "process_start",
+        "pid": 9152,
+        "name": "Spotify.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028645.3048372
+    },
+    {
+        "type": "process_start",
+        "pid": 19648,
+        "name": "Spotify.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028645.3049042
+    },
+    {
+        "type": "process_start",
+        "pid": 35332,
+        "name": "Spotify.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028645.3049674
+    },
+    {
+        "type": "process_start",
+        "pid": 3396,
+        "name": "Spotify.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028645.3053668
+    },
+    {
+        "type": "process_start",
+        "pid": 16524,
+        "name": "Spotify.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028645.305444
+    },
+    {
+        "type": "process_start",
+        "pid": 8268,
+        "name": "Spotify.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028645.3055074
+    },
+    {
+        "type": "process_start",
+        "pid": 27116,
+        "name": "RuntimeBroker.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028645.3055825
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028647.jpeg",
+        "window_title": "Spotify Free",
+        "timestamp": 1762028647.8086853
+    },
+    {
+        "type": "mouse_click",
+        "x": 996,
+        "y": 435,
+        "button": "Button.left",
+        "window_title": "Spotify Free",
+        "timestamp": 1762028649.6360033
+    },
+    {
+        "type": "process_start",
+        "pid": 25796,
+        "name": "Spotify.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028650.311414
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028650.jpeg",
+        "window_title": "Spotify Free",
+        "timestamp": 1762028650.938424
+    },
+    {
+        "type": "mouse_click",
+        "x": 649,
+        "y": 1058,
+        "button": "Button.left",
+        "window_title": "Spotify Free",
+        "timestamp": 1762028651.6838598
+    },
+    {
+        "type": "window_change",
+        "title": "Rechercher",
+        "timestamp": 1762028652.4406197
+    },
+    {
+        "type": "mouse_click",
+        "x": 422,
+        "y": 650,
+        "button": "Button.left",
+        "window_title": "Rechercher",
+        "timestamp": 1762028652.5378268
+    },
+    {
+        "type": "mouse_click",
+        "x": 586,
+        "y": 555,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028653.4179046
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028653.4553103
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028653.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028654.0281854
+    },
+    {
+        "type": "keystroke",
+        "key": "Key.ctrl_l",
+        "timestamp": 1762028655.4987133
+    },
+    {
+        "type": "keystroke",
+        "key": "'\\x03'",
+        "timestamp": 1762028655.7524142
+    },
+    {
+        "type": "clipboard_copy",
+        "content": "print(output[\"json_path\"])",
+        "timestamp": 1762028656.5335069
+    },
+    {
+        "type": "mouse_click",
+        "x": 626,
+        "y": 1054,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028656.6336634
+    },
+    {
+        "type": "keystroke",
+        "key": "Key.ctrl_l",
+        "timestamp": 1762028656.9685056
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028657.jpeg",
+        "window_title": "Rechercher",
+        "timestamp": 1762028657.1289208
+    },
+    {
+        "type": "keystroke",
+        "key": "'\\x16'",
+        "timestamp": 1762028657.3523216
+    },
+    {
+        "type": "window_change",
+        "title": "Rechercher",
+        "timestamp": 1762028657.4952984
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028660.jpeg",
+        "window_title": "Rechercher",
+        "timestamp": 1762028660.2127807
+    },
+    {
+        "type": "process_start",
+        "pid": 25792,
+        "name": "backgroundTaskHost.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028660.3369007
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028663.jpeg",
+        "window_title": "Rechercher",
+        "timestamp": 1762028663.3103766
+    },
+    {
+        "type": "mouse_click",
+        "x": 832,
+        "y": 1055,
+        "button": "Button.left",
+        "window_title": "Rechercher",
+        "timestamp": 1762028664.2218044
+    },
+    {
+        "type": "keystroke",
+        "key": "Key.backspace",
+        "timestamp": 1762028665.0429113
+    },
+    {
+        "type": "mouse_click",
+        "x": 504,
+        "y": 474,
+        "button": "Button.left",
+        "window_title": "Rechercher",
+        "timestamp": 1762028666.2380254
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028666.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028666.4168856
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028666.5845354
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028669.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028669.4959314
+    },
+    {
+        "type": "mouse_click",
+        "x": 1374,
+        "y": 1051,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028671.6520653
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028672.jpeg",
+        "window_title": "Spotify Free",
+        "timestamp": 1762028672.6133995
+    },
+    {
+        "type": "window_change",
+        "title": "Spotify Free",
+        "timestamp": 1762028672.6365354
+    },
+    {
+        "type": "mouse_click",
+        "x": 1902,
+        "y": 37,
+        "button": "Button.left",
+        "window_title": "Spotify Free",
+        "timestamp": 1762028672.6797845
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028673.6387467
+    },
+    {
+        "type": "mouse_click",
+        "x": 546,
+        "y": 1058,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028674.1860368
+    },
+    {
+        "type": "window_change",
+        "title": "Rechercher",
+        "timestamp": 1762028674.6398592
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028675.jpeg",
+        "window_title": "Rechercher",
+        "timestamp": 1762028675.6933014
+    },
+    {
+        "type": "mouse_click",
+        "x": 532,
+        "y": 415,
+        "button": "Button.left",
+        "window_title": "Rechercher",
+        "timestamp": 1762028676.2501311
+    },
+    {
+        "type": "window_change",
+        "title": "Param\u00e8tres",
+        "timestamp": 1762028676.6645672
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028678.jpeg",
+        "window_title": "Param\u00e8tres",
+        "timestamp": 1762028678.8043618
+    },
+    {
+        "type": "mouse_click",
+        "x": 120,
+        "y": 263,
+        "button": "Button.left",
+        "window_title": "Param\u00e8tres",
+        "timestamp": 1762028678.9417431
+    },
+    {
+        "type": "mouse_click",
+        "x": 1919,
+        "y": 0,
+        "button": "Button.left",
+        "window_title": "Param\u00e8tres",
+        "timestamp": 1762028680.165986
+    },
+    {
+        "type": "process_start",
+        "pid": 9312,
+        "name": "conhost.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028680.3854485
+    },
+    {
+        "type": "process_start",
+        "pid": 29792,
+        "name": "conhost.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028680.3855584
+    },
+    {
+        "type": "process_start",
+        "pid": 11392,
+        "name": "WpcTok.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028680.3856664
+    },
+    {
+        "type": "process_start",
+        "pid": 32940,
+        "name": "git.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028680.3860464
+    },
+    {
+        "type": "process_start",
+        "pid": 9196,
+        "name": "git.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028680.3862183
+    },
+    {
+        "type": "process_start",
+        "pid": 32236,
+        "name": "conhost.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028680.3864012
+    },
+    {
+        "type": "process_start",
+        "pid": 5488,
+        "name": "git.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028680.3865066
+    },
+    {
+        "type": "process_start",
+        "pid": 20952,
+        "name": "git.exe",
+        "username": "IPG3ALEX\\alexi",
+        "timestamp": 1762028680.3866067
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028680.7105582
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028681.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028681.8745759
+    },
+    {
+        "type": "mouse_click",
+        "x": 70,
+        "y": 254,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028684.6520283
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028684.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028684.9513044
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028687.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028688.0251143
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028691.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028691.108626
+    },
+    {
+        "type": "mouse_click",
+        "x": 1009,
+        "y": 1060,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762028693.6739235
+    },
+    {
+        "type": "window_change",
+        "title": "Lenovo Vantage",
+        "timestamp": 1762028693.821293
+    },
+    {
+        "type": "screenshot",
+        "file_path": "tracking/screenshots/screenshot_1762028694.jpeg",
+        "window_title": "Lenovo Vantage",
+        "timestamp": 1762028694.2189887
+    }
+]
