@@ -1,4 +1,5 @@
 import discord
+import asyncio
 
 async def envoyer_message_et_obtenir_reponse(token: str, guild_id: int, user_id: int, message_a_envoyer: str) -> str:
     """
@@ -68,27 +69,26 @@ async def envoyer_message(token: str, guild_id: int, user_id: int, message_a_env
 
 async def envoyer_photo(token: str, guild_id: int, user_id: int, chemin_image: str):
     """
-    Envoie uniquement une photo à un utilisateur dans un canal privé sur le serveur Discord.
-    Crée le canal privé si nécessaire.
+    Envoie une photo sans attendre de réponse.
     """
     channel_name = f"discussion-privee-{user_id}"
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
-
+    
     @client.event
     async def on_ready():
-        guild = client.get_guild(guild_id)
-        channel = discord.utils.get(guild.channels, name=channel_name)
-        if channel is None:
-            overwrites = {
-                guild.default_role: discord.PermissionOverwrite(read_messages=False),
-                discord.Object(id=user_id): discord.PermissionOverwrite(read_messages=True, send_messages=True),
-                guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True)
-            }
-            channel = await guild.create_text_channel(channel_name, overwrites=overwrites)
-        file = discord.File(chemin_image)
-        await channel.send(file=file)
-        await client.close()
+        try:
+            guild = client.get_guild(guild_id)
+            if guild:
+                channel = discord.utils.get(guild.channels, name=channel_name)
+                if channel is None:
+                    channel = await guild.create_text_channel(channel_name)
+                await channel.send(file=discord.File(chemin_image))
+        finally:
+            await client.close()
 
-    await client.start(token)
+    try:
+        await client.start(token)
+    except Exception as e:
+        print(f"Erreur lors de l'envoi de la photo: {e}")
