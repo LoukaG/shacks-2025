@@ -1,5 +1,4 @@
 import discord
-import asyncio
 
 async def envoyer_message_et_obtenir_reponse(token: str, guild_id: int, user_id: int, message_a_envoyer: str) -> str:
     """
@@ -56,13 +55,75 @@ async def envoyer_message_et_obtenir_reponse(token: str, guild_id: int, user_id:
     return reponse_utilisateur["message"]
 
 
-# Exemple d'utilisation
-if __name__ == "__main__":
-    # Lien serveur discrd https://discord.gg/D4P2Cs57
-    TOKEN = "MTQzNDIwMDUxMjY0MjgwOTk3Ng.Gd5jJ7.EPyLk0c5JNN7IoR4S-XSUniAmM6KPeZJPW2h7E"
-    GUILD_ID = 1434211042468302888
-    USER_ID = 772835381615001640    # Jas
-    MESSAGE = "Un intrus est détecté. 1 : Fermer ordi."
+async def envoyer_message(token: str, guild_id: int, user_id: int, message_a_envoyer: str):
+    """
+    Crée un canal privé avec l'utilisateur si nécessaire et envoie un message.
+    Ne lit pas les réponses.
+    """
+    channel_name = f"discussion-privee-{user_id}"
+    intents = discord.Intents.default()
+    intents.message_content = True
+    client = discord.Client(intents=intents)
 
-    reponse = asyncio.run(envoyer_message_et_obtenir_reponse(TOKEN, GUILD_ID, USER_ID, MESSAGE))
-    print(f"La réponse de l'utilisateur : {reponse}")
+    @client.event
+    async def on_ready():
+        print(f'Connecté en tant que {client.user}!')
+        guild = client.get_guild(guild_id)
+
+        # Vérifier si le canal existe déjà
+        channel = discord.utils.get(guild.channels, name=channel_name)
+        if channel is None:
+            overwrites = {
+                guild.default_role: discord.PermissionOverwrite(read_messages=False),
+                discord.Object(id=user_id): discord.PermissionOverwrite(read_messages=True, send_messages=True),
+                guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True)
+            }
+            channel = await guild.create_text_channel(channel_name, overwrites=overwrites)
+            print(f"Canal privé '{channel_name}' créé !")
+        else:
+            print(f"Canal privé '{channel_name}' déjà existant.")
+
+        # Envoyer le message
+        await channel.send(f"<@{user_id}> {message_a_envoyer}")
+        await client.close()  # Déconnecte le bot après l'envoi
+
+    await client.start(token)
+
+
+
+async def envoyer_photo(token: str, guild_id: int, user_id: int, chemin_image: str):
+    """
+    Envoie uniquement une photo à un utilisateur dans un canal privé sur le serveur Discord.
+    Crée le canal privé si nécessaire.
+    """
+    channel_name = f"discussion-privee-{user_id}"
+    intents = discord.Intents.default()
+    intents.message_content = True
+    client = discord.Client(intents=intents)
+
+    @client.event
+    async def on_ready():
+        print(f"Connecté en tant que {client.user}")
+        guild = client.get_guild(guild_id)
+
+        # Vérifie si le canal existe déjà
+        channel = discord.utils.get(guild.channels, name=channel_name)
+        if channel is None:
+            overwrites = {
+                guild.default_role: discord.PermissionOverwrite(read_messages=False),
+                discord.Object(id=user_id): discord.PermissionOverwrite(read_messages=True, send_messages=True),
+                guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True)
+            }
+            channel = await guild.create_text_channel(channel_name, overwrites=overwrites)
+            print(f"Canal privé '{channel_name}' créé !")
+        else:
+            print(f"Canal privé '{channel_name}' déjà existant.")
+
+        # Envoi de la photo
+        file = discord.File(chemin_image)
+        await channel.send(file=file)
+        print(f"Photo envoyée : {chemin_image}")
+
+        await client.close()
+
+    await client.start(token)
