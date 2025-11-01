@@ -1,0 +1,98 @@
+[
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762014120.203501
+    },
+    {
+        "type": "mouse_click",
+        "x": 1029,
+        "y": 1047,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762014122.1306436
+    },
+    {
+        "type": "window_change",
+        "title": "2025-11-01 - WakaTime et 6 pages de plus - Personnel \u2013 Microsoft\u200b Edge",
+        "timestamp": 1762014122.2077363
+    },
+    {
+        "type": "mouse_click",
+        "x": 641,
+        "y": 0,
+        "button": "Button.left",
+        "window_title": "2025-11-01 - WakaTime et 6 pages de plus - Personnel \u2013 Microsoft\u200b Edge",
+        "timestamp": 1762014123.9666185
+    },
+    {
+        "type": "window_change",
+        "title": "gmail - Recherche et 6 pages de plus - Personnel \u2013 Microsoft\u200b Edge",
+        "timestamp": 1762014124.2144618
+    },
+    {
+        "type": "mouse_click",
+        "x": 400,
+        "y": 0,
+        "button": "Button.left",
+        "window_title": "gmail - Recherche et 6 pages de plus - Personnel \u2013 Microsoft\u200b Edge",
+        "timestamp": 1762014124.962551
+    },
+    {
+        "type": "window_change",
+        "title": "GitHub Dashboard et 6 pages de plus - Personnel \u2013 Microsoft\u200b Edge",
+        "timestamp": 1762014126.2157617
+    },
+    {
+        "type": "mouse_click",
+        "x": 1352,
+        "y": 0,
+        "button": "Button.left",
+        "window_title": "GitHub Dashboard et 6 pages de plus - Personnel \u2013 Microsoft\u200b Edge",
+        "timestamp": 1762014126.3744
+    },
+    {
+        "type": "mouse_click",
+        "x": 1131,
+        "y": 1056,
+        "button": "Button.left",
+        "window_title": "2025-11-01 - WakaTime et 6 pages de plus - Personnel \u2013 Microsoft\u200b Edge",
+        "timestamp": 1762014127.4905422
+    },
+    {
+        "type": "window_change",
+        "title": "shacks-2025\u00a0: Explorateur de fichiers [ main \u2302 ]",
+        "timestamp": 1762014128.2242284
+    },
+    {
+        "type": "window_change",
+        "title": "shacks-2025\u00a0: Explorateur de fichiers [ main \u2302 ]",
+        "timestamp": 1762014130.2358413
+    },
+    {
+        "type": "mouse_click",
+        "x": 95,
+        "y": 271,
+        "button": "Button.left",
+        "window_title": "shacks-2025\u00a0: Explorateur de fichiers [ main \u2302 ]",
+        "timestamp": 1762014130.7786489
+    },
+    {
+        "type": "mouse_click",
+        "x": 1494,
+        "y": 68,
+        "button": "Button.left",
+        "window_title": "Alexis - personnel\u00a0: Explorateur de fichiers",
+        "timestamp": 1762014131.4305665
+    },
+    {
+        "type": "window_change",
+        "title": "Alexis - personnel\u00a0: Explorateur de fichiers",
+        "timestamp": 1762014132.2462904
+    },
+    {
+        "type": "window_change",
+        "title": "Alexis - personnel\u00a0: Explorateur de fichiers",
+        "timestamp": 1762014134.2514699
+    }
+]
