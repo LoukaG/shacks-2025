@@ -1,0 +1,37 @@
+[
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762022792.2054365
+    },
+    {
+        "type": "screenshot",
+        "file_path": "screenshots/screenshot_1762022792.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762022792.3113003
+    },
+    {
+        "type": "mouse_click",
+        "x": 877,
+        "y": 758,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762022793.4313753
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762022794.210821
+    },
+    {
+        "type": "screenshot",
+        "file_path": "screenshots/screenshot_1762022795.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762022795.38711
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762022796.2217946
+    }
+]

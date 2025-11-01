@@ -14,40 +14,49 @@ from pynput.mouse import Button, Listener as MouseListener    # Pour la souris
 from watchdog.observers import Observer                       # Pour surveiller les fichiers
 from watchdog.events import FileSystemEventHandler            # Pour gérer les événements de fichiers
 
-last_title = None
-event_log = []
-stop_event = threading.Event()
-running_lstnr = {
+_last_title = None
+_event_log = []
+_stop_event = threading.Event()
+_running_lstnr = {
     "keyboard": None,
     "mouse": None
 }
 
-def start_tracking_activity():
-    stop_event.clear()
-    start_all_tracking_event()
+def tracking(duration, output):
+    _start_tracking_activity()
+    _stop_event.wait(duration)
+    _stop_tracking_activity()
+    output["json_path"]=_save_log_to_json()
 
-def start_all_tracking_event():
+def stop_tracking():
+    _stop_event.set()
+
+def _start_tracking_activity():
+    _stop_event.clear()
+    _start_all_tracking_event()
+
+def _start_all_tracking_event():
     tasks = [
-        (start_kbd_lstnr, ()),
-        (start_mouse_lstnr, ()),
-        (window_tracker_loop, ())
+        (_start_kbd_lstnr, ()),
+        (_start_mouse_lstnr, ()),
+        (_window_tracker_loop, ()),
+        (_screenshot_loop, ())
     ]
     for task_func, task_args in tasks:
         thread = threading.Thread(target=task_func, args=task_args, daemon=True)
         thread.start()
 
-def stop_tracking_activity():
-    stop_event.set()
-    if running_lstnr["mouse"]:
-        running_lstnr["mouse"].stop()
-    save_log_to_json()
+def _stop_tracking_activity():
+    _stop_event.set()
+    if _running_lstnr["mouse"]:
+        _running_lstnr["mouse"].stop()
 
 
-def add_to_log(data_dict):
+def _add_to_log(data_dict):
     data_dict["timestamp"] = time.time()
-    event_log.append(data_dict)
+    _event_log.append(data_dict)
 
-def get_active_window_title():
+def _get_active_window_title():
     try:
         active_window = gw.getActiveWindow()
         if active_window:
@@ -56,91 +65,103 @@ def get_active_window_title():
         pass
     return None
 
-def start_lstnr(name, lstnr):
-    running_lstnr[name] = lstnr
+def _start_lstnr(name, lstnr):
+    _running_lstnr[name] = lstnr
     lstnr.join()
     
 
 # Keyboard
-def start_kbd_lstnr():
-    with KeyboardListener(on_press=log_keystroke) as lstnr:
-        start_lstnr("keyboard", lstnr)
+def _start_kbd_lstnr():
+    with KeyboardListener(on_press=_log_keystroke) as lstnr:
+        _start_lstnr("keyboard", lstnr)
 
-def log_keystroke(key):
+def _log_keystroke(key):
     data = {
         "type": "keystroke",
         "key": str(key)
     }
-    add_to_log(data)
+    _add_to_log(data)
 
 
 # Mouse
-def start_mouse_lstnr():
-    with MouseListener(on_click=log_mouse_click) as lstnr:
-        start_lstnr("mouse", lstnr)
+def _start_mouse_lstnr():
+    with MouseListener(on_click=_log_mouse_click) as lstnr:
+        _start_lstnr("mouse", lstnr)
 
-def log_mouse_click(x, y, button, pressed):
+def _log_mouse_click(x, y, button, pressed):
     if pressed:
         data = {
             "type": "mouse_click",
             "x": x,
             "y": y,
             "button": str(button),
-            "window_title": get_active_window_title()
+            "window_title": _get_active_window_title()
         }
-        add_to_log(data)
+        _add_to_log(data)
 
 
 # Window
-def window_tracker_loop():
-    while not stop_event.is_set():
-        log_active_window()
-        stop_event.wait(2)
+def _window_tracker_loop():
+    while not _stop_event.is_set():
+        _log_active_window()
+        _stop_event.wait(2)
 
-def log_active_window():
-    global last_title
-    title = get_active_window_title()
-    if title and title is not last_title:
-        last_title = title
+def _log_active_window():
+    global _last_title
+    title = _get_active_window_title()
+    if title and title is not _last_title:
+        _last_title = title
         data = {
             "type": "window_change",
             "title": title
         }
-        add_to_log(data)
+        _add_to_log(data)
 
 
 
 # screenshots
-def screenshot_loop(output_dir = "screenshots", interval = 10):
+def _screenshot_loop(output_dir = "screenshots", interval = 3):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    while not stop_event.is_set():
-        file_name = f"{output_dir}/screenshot_{int(time.time())}"
+    while not _stop_event.is_set():
+        file_name = f"{output_dir}/screenshot_{int(time.time())}.jpeg"
         try:
-            with mss.mss as sct:
+            with mss.mss() as sct:
                 sct.shot(output=file_name)
                 data = {
                     "type": "screenshot",
                     "file_path": file_name,
-                    "window_title" : get_active_window_title()
+                    "window_title" : _get_active_window_title()
                 }
-                add_to_log(data)
+                _add_to_log(data)
         except Exception as e:
             print (f"Erreur MSS: {e}")
-        stop_event.wait(interval)
+        _stop_event.wait(interval)
 
 
-def save_log_to_json(file_name="intrusion_log.json"):
+def _save_log_to_json(output_dir = "intrusions", file_name="intrusion_log"):
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     try:
-        with open(file_name, 'w', encoding='utf-8') as f:
-            json.dump(event_log, f, indent=4)
+        json_path = f"{output_dir}/{file_name}_{int(time.time())}.json"
+        with open(json_path, 'w', encoding='utf-8') as f:
+            json.dump(_event_log, f, indent=4)
+        return json_path
     except Exception as e:
         print(f"Log to JSON Error : {e}")
+        return None
 
-
-
-
-
-start_tracking_activity()
-time.sleep(15)
-stop_tracking_activity()
+c = False
+def cancel():
+    time.sleep(5)
+    global c
+    c = True
+output = {}
+threading.Thread(target=cancel, daemon=True).start()
+tracking_thread = threading.Thread(target=tracking, args=(15, output),daemon=True)
+tracking_thread.start()
+while tracking_thread.is_alive():
+    if c:
+        stop_tracking()
+    _stop_event.wait(1)
+print(output["json_path"])

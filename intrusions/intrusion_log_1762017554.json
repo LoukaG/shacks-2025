@@ -1,0 +1,152 @@
+[
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017539.6775594
+    },
+    {
+        "type": "screenshot",
+        "file_path": "screenshots/screenshot_1762017539.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017539.7832272
+    },
+    {
+        "type": "mouse_click",
+        "x": 574,
+        "y": 395,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017540.821582
+    },
+    {
+        "type": "mouse_click",
+        "x": 524,
+        "y": 311,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017541.1274834
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017541.6897466
+    },
+    {
+        "type": "mouse_click",
+        "x": 559,
+        "y": 47,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017541.9429972
+    },
+    {
+        "type": "screenshot",
+        "file_path": "screenshots/screenshot_1762017542.jpeg",
+        "window_title": "intrusion_log.json - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017542.861342
+    },
+    {
+        "type": "mouse_click",
+        "x": 646,
+        "y": 69,
+        "button": "Button.left",
+        "window_title": "intrusion_log.json - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017542.9473412
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017543.6900094
+    },
+    {
+        "type": "mouse_click",
+        "x": 1318,
+        "y": 1046,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017544.101108
+    },
+    {
+        "type": "mouse_click",
+        "x": 695,
+        "y": 585,
+        "button": "Button.left",
+        "window_title": "Windows PowerShell",
+        "timestamp": 1762017545.279087
+    },
+    {
+        "type": "window_change",
+        "title": "Windows PowerShell",
+        "timestamp": 1762017545.7013001
+    },
+    {
+        "type": "screenshot",
+        "file_path": "screenshots/screenshot_1762017545.jpeg",
+        "window_title": "Windows PowerShell",
+        "timestamp": 1762017545.9509218
+    },
+    {
+        "type": "mouse_click",
+        "x": 1201,
+        "y": 1046,
+        "button": "Button.left",
+        "window_title": "Windows PowerShell",
+        "timestamp": 1762017546.2675064
+    },
+    {
+        "type": "mouse_click",
+        "x": 1262,
+        "y": 1055,
+        "button": "Button.left",
+        "window_title": "Gemini - Google Gemini",
+        "timestamp": 1762017546.8632348
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017547.7014053
+    },
+    {
+        "type": "screenshot",
+        "file_path": "screenshots/screenshot_1762017548.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017549.0395217
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017549.7095847
+    },
+    {
+        "type": "mouse_click",
+        "x": 644,
+        "y": 298,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017549.8932009
+    },
+    {
+        "type": "mouse_click",
+        "x": 632,
+        "y": 248,
+        "button": "Button.left",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017550.2555037
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017551.7194822
+    },
+    {
+        "type": "screenshot",
+        "file_path": "screenshots/screenshot_1762017552.jpeg",
+        "window_title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017552.1153555
+    },
+    {
+        "type": "window_change",
+        "title": "tracking_activity.py - shacks-2025 - Visual Studio Code",
+        "timestamp": 1762017553.733223
+    }
+]
