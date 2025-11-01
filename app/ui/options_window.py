@@ -1,10 +1,7 @@
-import json
-import os
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QComboBox, QFrame, QSpacerItem, QSizePolicy
 from PySide6.QtGui import QIcon, QPixmap, QFont
 from PySide6.QtCore import Qt
-
-SETTINGS_PATH = "settings.json"
+from ..utils.options import settings
 
 class OptionsWindow(QWidget):
     def __init__(self):
@@ -142,26 +139,11 @@ class OptionsWindow(QWidget):
         self.setLayout(main_layout)
 
         # Charger les paramètres
-        self.settings = self.load_settings()
-        self.security_dropdown.setCurrentText(self.settings.get("security_mode", "Fermer auto"))
+        self.security_dropdown.setCurrentText(settings.get("security_mode"))
         self.current_label.setText(f"✓ Mode actif : {self.security_dropdown.currentText()}")
 
         self.security_dropdown.currentTextChanged.connect(self.on_change)
 
     def on_change(self, text):
         self.current_label.setText(f"✓ Mode actif : {text}")
-        self.settings["security_mode"] = text
-        self.save_settings()
-
-    def load_settings(self):
-        if os.path.exists(SETTINGS_PATH):
-            try:
-                with open(SETTINGS_PATH, "r", encoding="utf-8") as f:
-                    return json.load(f)
-            except json.JSONDecodeError:
-                return {}
-        return {}
-
-    def save_settings(self):
-        with open(SETTINGS_PATH, "w", encoding="utf-8") as f:
-            json.dump(self.settings, f, indent=2)
+        settings.set("security_mode", text)
