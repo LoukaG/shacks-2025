@@ -59,7 +59,7 @@ async def envoyer_message_et_obtenir_reponse(token: str, guild_id: int, user_id:
 # Exemple d'utilisation
 if __name__ == "__main__":
     # Lien serveur discrd https://discord.gg/D4P2Cs57
-    TOKEN = "MTQzNDIwMDUxMjY0MjgwOTk3Ng.Gd5jJ7.EPyLk0c5JNN7IoR4S-XSUniAmM6KPeZJPW2h7E"
+    TOKEN = "TOKEN"
     GUILD_ID = 1434211042468302888
     USER_ID = 772835381615001640    # Jas
     MESSAGE = "Un intrus est détecté. 1 : Fermer ordi."
