@@ -3,6 +3,9 @@ import face_recognition
 
 def is_intruder(path_frame: str, path_reference: str, tolerance: float = 0.6) -> bool:
     """
+    Path_frame: chemin vers l'image capturée.
+    Path_reference: chemin vers l'image de référence.
+    Tolerance: seuil de tolérance pour la comparaison des visages.
     Retourne True si c’est un intrus (autre personne ou aucun visage reconnu).
     """
     # Charger l'image de référence
