@@ -1,16 +1,21 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QComboBox, QFrame, QSpacerItem, QSizePolicy
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QComboBox, QFrame, QSpacerItem, QSizePolicy, QPushButton
 from PySide6.QtGui import QIcon, QPixmap, QFont
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Signal
 from ..utils.options import settings
+from .reference_window import ReferenceWindow
 
 class OptionsWindow(QWidget):
+    reference_window_opened = Signal()
+    reference_window_closed = Signal()
+    
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Shacks 2025 - Options")
         self.setWindowIcon(QIcon("assets/icon.png"))
         self.resize(500, 400)
         
-        # Style moderne
+        self.reference_window = None
+        
         self.setStyleSheet("""
             QWidget {
                 background-color: #f5f5f5;
@@ -35,16 +40,16 @@ class OptionsWindow(QWidget):
                 padding: 8px;
                 border: 2px solid #bdc3c7;
                 border-radius: 5px;
-                background-color: white;
+                background-color: #f5f5f5;
                 color: #000000;
                 font-size: 13px;
                 min-height: 25px;
             }
             QComboBox:hover {
-                border: 2px solid #3498db;
+                border: 2px solid #018849;
             }
             QComboBox:focus {
-                border: 2px solid #2980b9;
+                border: 2px solid #016a37;
             }
             QComboBox::drop-down {
                 border: none;
@@ -60,7 +65,7 @@ class OptionsWindow(QWidget):
             QComboBox QAbstractItemView {
                 background-color: white;
                 color: #000000;
-                selection-background-color: #3498db;
+                selection-background-color: #018849;
                 selection-color: white;
             }
             QFrame#separator {
@@ -71,6 +76,26 @@ class OptionsWindow(QWidget):
                 font-size: 12px;
                 font-style: italic;
                 padding: 5px;
+            }
+            QPushButton {
+                padding: 10px 20px;
+                border: 2px solid #018849;
+                border-radius: 5px;
+                background-color: #f5f5f5;
+                color: #018849;
+                font-size: 13px;
+                font-weight: bold;
+                min-height: 25px;
+            }
+            QPushButton:hover {
+                background-color: #f0f9f5;
+                border: 2px solid #016a37;
+                color: #016a37;
+            }
+            QPushButton:pressed {
+                background-color: #e0f2ea;
+                border: 2px solid #014d28;
+                color: #014d28;
             }
         """)
 
@@ -114,7 +139,7 @@ class OptionsWindow(QWidget):
         options_layout = QVBoxLayout()
         options_layout.setSpacing(15)
         
-        security_label = QLabel("⚙️ Type de sécurité")
+        security_label = QLabel("Type de sécurité")
         security_label.setObjectName("section")
         options_layout.addWidget(security_label)
 
@@ -124,14 +149,29 @@ class OptionsWindow(QWidget):
         options_layout.addWidget(security_desc)
 
         self.security_dropdown = QComboBox()
-        self.security_dropdown.addItems(["Fermer auto", "Logger"])
+        self.security_dropdown.addItems(["Fermeture automatique", "Contre-espionnage"])
         options_layout.addWidget(self.security_dropdown)
 
-        self.current_label = QLabel()
-        self.current_label.setObjectName("status")
-        options_layout.addWidget(self.current_label)
-
         main_layout.addLayout(options_layout)
+        
+        # Section Image de référence
+        reference_layout = QVBoxLayout()
+        reference_layout.setSpacing(15)
+        
+        reference_label = QLabel("Image de référence")
+        reference_label.setObjectName("section")
+        reference_layout.addWidget(reference_label)
+
+        reference_desc = QLabel("Définissez l'image de référence utilisée pour la détection d'intrus :")
+        reference_desc.setWordWrap(True)
+        reference_desc.setStyleSheet("color: #7f8c8d; font-size: 12px; margin-bottom: 5px;")
+        reference_layout.addWidget(reference_desc)
+
+        self.reference_button = QPushButton("Définir images de référence")
+        self.reference_button.clicked.connect(self.on_set_reference)
+        reference_layout.addWidget(self.reference_button)
+
+        main_layout.addLayout(reference_layout)
         
         # Espaceur pour pousser le contenu vers le haut
         main_layout.addStretch()
@@ -140,10 +180,20 @@ class OptionsWindow(QWidget):
 
         # Charger les paramètres
         self.security_dropdown.setCurrentText(settings.get("security_mode"))
-        self.current_label.setText(f"✓ Mode actif : {self.security_dropdown.currentText()}")
 
         self.security_dropdown.currentTextChanged.connect(self.on_change)
 
     def on_change(self, text):
-        self.current_label.setText(f"✓ Mode actif : {text}")
         settings.set("security_mode", text)
+    
+    def on_set_reference(self):
+        if self.reference_window is None or not self.reference_window.isVisible():
+            self.reference_window = ReferenceWindow()
+            self.reference_window.window_closed.connect(self.on_reference_window_closed)
+            self.reference_window.showMaximized()
+            self.reference_window_opened.emit()
+        else:
+            self.reference_window.activateWindow()
+    
+    def on_reference_window_closed(self):
+        self.reference_window_closed.emit()

@@ -20,6 +20,13 @@ class CameraCapture:
         cv2.imwrite(filepath, frame)
         print(f"Image enregistrée : {filepath}")
         return filepath
+    
+    def get_frame(self):
+        """Retourne une frame de la caméra sans l'enregistrer"""
+        ret, frame = self.cap.read()
+        if ret:
+            return frame
+        return None
 
     def release(self):
         self.cap.release()

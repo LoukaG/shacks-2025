@@ -4,6 +4,7 @@ from PySide6.QtCore import QTimer
 from ..ui.options_window import OptionsWindow
 from ..camera.camera_capture import CameraCapture
 from ..camera.intruder import Intruder
+from pathlib import Path
 
 class SystemTray(QSystemTrayIcon):
     def __init__(self, app):
@@ -26,7 +27,33 @@ class SystemTray(QSystemTrayIcon):
 
         self.windows = []
         self.camera = CameraCapture()
-        self.intruder_detector = Intruder(path_reference="captures/reference/face.jpg")
+        
+        # Construire l'array des images de référence
+        reference_dir = Path("captures/reference")
+        reference_images = []
+        
+        # Vérifier reference_1.jpg (obligatoire)
+        ref1 = reference_dir / "reference_1.jpg"
+        if ref1.exists():
+            reference_images.append(str(ref1))
+        
+        # Vérifier reference_2.jpg (optionnel)
+        ref2 = reference_dir / "reference_2.jpg"
+        if ref2.exists():
+            reference_images.append(str(ref2))
+        
+        # Vérifier reference_3.jpg (optionnel)
+        ref3 = reference_dir / "reference_3.jpg"
+        if ref3.exists():
+            reference_images.append(str(ref3))
+        
+        # Créer le détecteur avec les images trouvées (minimum 1)
+        if reference_images:
+            self.intruder_detector = Intruder(reference_paths=reference_images)
+            print(f"[Intruder] {len(reference_images)} image(s) de référence chargée(s) : {reference_images}")
+        else:
+            print("[Intruder] ATTENTION : Aucune image de référence trouvée !")
+            self.intruder_detector = None
 
         # Compteur de détections consécutives
         self.intruder_count = 0
@@ -35,15 +62,22 @@ class SystemTray(QSystemTrayIcon):
         # Timer toutes les 3 secondes
         self.timer = QTimer()
         self.timer.timeout.connect(self.tache_periodique)
-        self.timer.start(3000)
+        self.timer.start(1000)
 
     def open_options(self):
         win = OptionsWindow()
+        win.reference_window_opened.connect(self.stop_monitoring)
+        win.reference_window_closed.connect(self.start_monitoring)
         win.show()
         self.windows.append(win)
 
     def tache_periodique(self):
         try:
+            # Vérifier si le détecteur est initialisé
+            if self.intruder_detector is None:
+                print("[Intruder] Pas de détecteur - aucune image de référence")
+                return
+            
             self.camera.capture_image()
             is_intruder_detected = self.intruder_detector.is_intruder(
                 path_frame="captures/last_capture.jpg",
@@ -73,6 +107,35 @@ class SystemTray(QSystemTrayIcon):
             QSystemTrayIcon.Critical
         )
         print("[Intruder] Alerte envoyée.")
+    
+    def stop_monitoring(self):
+        """Arrête la surveillance et libère la caméra"""
+        print("[Tray] Arrêt de la surveillance...")
+        self.timer.stop()
+        self.camera.release()
+    
+    def start_monitoring(self):
+        """Redémarre la surveillance"""
+        print("[Tray] Redémarrage de la surveillance...")
+        self.camera = CameraCapture()
+        
+        # Recharger les images de référence
+        reference_dir = Path("captures/reference")
+        reference_images = []
+        
+        for i in range(1, 4):
+            ref = reference_dir / f"reference_{i}.jpg"
+            if ref.exists():
+                reference_images.append(str(ref))
+        
+        if reference_images:
+            self.intruder_detector = Intruder(reference_paths=reference_images)
+            print(f"[Intruder] {len(reference_images)} image(s) de référence rechargée(s)")
+        else:
+            print("[Intruder] ATTENTION : Aucune image de référence trouvée !")
+            self.intruder_detector = None
+        
+        self.timer.start(3000)
 
     def quit_app(self):
         self.timer.stop()
