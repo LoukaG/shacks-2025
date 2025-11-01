@@ -9,10 +9,8 @@ import psutil                 # Pour les processus, le réseau, le CPU
 import pyperclip              # Pour le presse-papiers
 import pygetwindow as gw      # Pour le titre de la fenêtre active
 import mss                    # Pour les captures d'écran (rapide)
-from pynput.keyboard import Key, Listener as KeyboardListener # Pour le clavier
-from pynput.mouse import Button, Listener as MouseListener    # Pour la souris
-from watchdog.observers import Observer                       # Pour surveiller les fichiers
-from watchdog.events import FileSystemEventHandler            # Pour gérer les événements de fichiers
+from pynput.keyboard import Listener as KeyboardListener      # Pour le clavier
+from pynput.mouse import Listener as MouseListener            # Pour la souris
 
 _tracking_folder_path = "tracking"
 _last_title = None
@@ -233,9 +231,3 @@ def _save_log_to_json(output_dir = "intrusions", file_name="intrusion_log"):
     except Exception as e:
         print(f"Log to JSON Error : {e}")
         return None
-
-
-
-output = {}
-tracking(60, output)
-print(output["json_path"])
