@@ -1,6 +1,8 @@
 from PySide6.QtWidgets import QSystemTrayIcon, QMenu
 from PySide6.QtGui import QIcon, QAction
 from PySide6.QtCore import QTimer
+
+from app.ui.intrusion_report_window import IntrusionReportWindow
 from ..ui.options_window import OptionsWindow
 from ..camera.camera_capture import CameraCapture
 from ..camera.intruder import Intruder
@@ -13,6 +15,11 @@ class SystemTray(QSystemTrayIcon):
         self.setToolTip("Shacks 2025 - Sécurité")
 
         menu = QMenu()
+        
+        reports_action = QAction("Voir les rapports", self)
+        reports_action.triggered.connect(self.open_reports)
+        menu.addAction(reports_action)
+        
         options_action = QAction("Options", self)
         options_action.triggered.connect(self.open_options)
         menu.addAction(options_action)
@@ -69,6 +76,11 @@ class SystemTray(QSystemTrayIcon):
         win.reference_window_opened.connect(self.stop_monitoring)
         win.reference_window_closed.connect(self.start_monitoring)
         win.show()
+        self.windows.append(win)
+
+    def open_reports(self):
+        win = IntrusionReportWindow()
+        win.showMaximized()
         self.windows.append(win)
 
     def tache_periodique(self):

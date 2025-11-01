@@ -1,6 +1,8 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QComboBox, QFrame, QSpacerItem, QSizePolicy, QPushButton
 from PySide6.QtGui import QIcon, QPixmap, QFont
 from PySide6.QtCore import Qt, Signal
+
+from app.ui.intrusion_report_window import IntrusionReportWindow
 from ..utils.options import settings
 from .reference_window import ReferenceWindow
 
@@ -15,6 +17,7 @@ class OptionsWindow(QWidget):
         self.resize(500, 400)
         
         self.reference_window = None
+        self.intrusion_report_window = None
         
         self.setStyleSheet("""
             QWidget {
@@ -172,6 +175,25 @@ class OptionsWindow(QWidget):
         reference_layout.addWidget(self.reference_button)
 
         main_layout.addLayout(reference_layout)
+
+        # Section Rapport d'intrusion
+        reports_layout = QVBoxLayout()
+        reports_layout.setSpacing(15)
+
+        reports_label = QLabel("Rapports d'intrusion")
+        reports_label.setObjectName("section")
+        reports_layout.addWidget(reports_label)
+
+        reports_desc = QLabel("Consultez les rapports d'intrusion générés :")
+        reports_desc.setWordWrap(True)
+        reports_desc.setStyleSheet("color: #7f8c8d; font-size: 12px; margin-bottom: 5px;")
+        reports_layout.addWidget(reports_desc)
+
+        self.reports_button = QPushButton("Voir les rapports")
+        self.reports_button.clicked.connect(self.on_open_intrusion_report)
+        reports_layout.addWidget(self.reports_button)
+
+        main_layout.addLayout(reports_layout)
         
         # Espaceur pour pousser le contenu vers le haut
         main_layout.addStretch()
@@ -194,6 +216,13 @@ class OptionsWindow(QWidget):
             self.reference_window_opened.emit()
         else:
             self.reference_window.activateWindow()
+    def on_open_intrusion_report(self):
+        if self.intrusion_report_window is None or not self.intrusion_report_window.isVisible():
+            self.intrusion_report_window = IntrusionReportWindow()
+            self.intrusion_report_window.showMaximized()
+        else:
+            self.intrusion_report_window.activateWindow()
     
     def on_reference_window_closed(self):
         self.reference_window_closed.emit()
+        
