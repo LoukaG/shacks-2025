@@ -13,7 +13,11 @@ from reportlab.lib.units import inch, cm
 
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
-pdfmetrics.registerFont(TTFont("DejaVu", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"))
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+font_path = os.path.join(current_dir, "..", "fonts", "DejaVuSans.ttf")
+font_path = os.path.abspath(font_path)
+pdfmetrics.registerFont(TTFont("DejaVu", font_path))
 
 
 def generate_intrusion_report(input_json_path: str,
@@ -138,7 +142,7 @@ def generate_intrusion_report(input_json_path: str,
     print(f" PDF généré ➜ {pdf_path}")
     print(f" Résumé JSON généré ➜ {summary_json_path}")
 
-    return {"pdf_path": pdf_path, "summary_json_path": summary_json_path}
+    return pdf_path, summary_json_path
 
 
 if __name__ == "__main__":
