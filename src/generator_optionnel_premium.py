@@ -281,7 +281,7 @@ def enrich_logs_with_descriptions(
             
             prompt = f"""
             On a pris un screenshot à l'instant dans la fenêtre : "{window_title}".
-            Basé UNIQUEMENT sur la séquence d'actions JUSTE AVANT ce screenshot, rédige une 
+            Basé UNIQUEMENT sur la séquence d'actions(et qui ne sont pas des logs type screenshot) JUSTE AVANT ce screenshot , rédige une 
             description CONCISE (maximum deux phrases courtes) de ce que l'utilisateur était 
             probablement en train de faire et ce que le screenshot capture.
             
