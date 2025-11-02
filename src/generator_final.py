@@ -71,7 +71,7 @@ def generate_intrusion_report(input_json_path: str,
             Paragraph("Action", cell_style),
             Paragraph("Détails", cell_style)
         ]
-    ] # Note: Utiliser Paragraph pour l'entête est plus sûr pour les accents
+    ] 
 
     logs_text = ""
     timestamps = []
@@ -86,7 +86,7 @@ def generate_intrusion_report(input_json_path: str,
 
         logs_text += f"{dt} | {action} | {details_str}\n"
 
-        # MODIFICATION CLÉ: Encapsuler les données du tableau dans des Paragraphs
+       
         table_data.append([
             Paragraph(dt, cell_style),
             Paragraph(action, cell_style),
@@ -96,7 +96,7 @@ def generate_intrusion_report(input_json_path: str,
     start_time = datetime.fromtimestamp(min(timestamps), timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     end_time   = datetime.fromtimestamp(max(timestamps), timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
-    # ----------- SUMMARY WITH LLM (Reste inchangé) -----------
+    # ----------- SUMMARY WITH LLM ------------------------
 
     prompt = f"""
     Tu es un expert cybersécurité. Voici les actions détectées sur un ordinateur :
@@ -105,7 +105,7 @@ def generate_intrusion_report(input_json_path: str,
 
     Explique clairement en racontant ce que la personne a fait , pourquoi c'est suspect, quels risques pour l'ordinateur,
     et suggère des recommandations simples. Contexte non technique. 
-    mets une paragraphe bien écrite,fluide et claire.
+    mets une paragraphe bien écrite,fluide et claire et très naturel sans beaucoup de caractères et étoiles.
     ignore les screenshots,c'est nous qui ont fait les screenshot pour savoir ce qu'il a fait
     Période : {start_time} -> {end_time}.
     """
@@ -140,7 +140,7 @@ def generate_intrusion_report(input_json_path: str,
         intrusion_duration = f"{hours:02}:{minutes:02}:{seconds:02}" 
 
     summary_json = {
-        "total_actions": len(logs), # Utiliser len(logs) car table_data a une ligne d'entête
+        "total_actions": len(logs), 
         "intrusion_start": start_time,
         "intrusion_duration": intrusion_duration
     }
@@ -149,7 +149,7 @@ def generate_intrusion_report(input_json_path: str,
     with open(summary_json_path, "w", encoding="utf-8") as f:
         json.dump(summary_json, f, indent=4, ensure_ascii=False)
 
-    # ----------- PDF STYLES SUITE (Styles déjà définis) -----------
+   
 
     title_style = ParagraphStyle(
         "Title",
@@ -229,8 +229,9 @@ def generate_intrusion_report(input_json_path: str,
     return pdf_path, summary_json_path
 
 
+
 if __name__ == "__main__":
-    # Assurez-vous que les chemins et le token sont corrects pour le test local
+    
     try:
         result = generate_intrusion_report(
             "/home/ubuntu/shacks-2025/logs/json_final.json",
